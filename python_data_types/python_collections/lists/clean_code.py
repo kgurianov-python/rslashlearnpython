@@ -1,3 +1,6 @@
+import random
+
+
 def sort_list(list):
     if len(list) < 2:
         return list
