@@ -8,9 +8,9 @@ def sort_list(list):
     less,equals,greater = [],[],[]
     for item in list:
         if item < pivot:
-            minors.append(item)
+            less.append(item)
         elif item == pivot:
             equals.append(item)
         else:
-            older.append(item)
-    return sort_list(smaller) + equals +sort_list(greater)
+            greater.append(item)
+    return sort_list(less) + equals +sort_list(greater)
