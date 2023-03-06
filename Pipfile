@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-telegram-bot = {extras = ["all"], version = "*"}
+pytest = "*"
+numpy = "*"
+matplotlib = "*"
+requests = "*"
+beautifulsoup4 = "*"
+yattag = "*"
+jupyter = "*"
+pandas = "*"
+boto3 = "*"
+moto = "*"
+selenium = "*"
+pynput = "*"
+pylint = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
+python_full_version = "3.11.1"

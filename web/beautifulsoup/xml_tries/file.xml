@@ -1,0 +1,26 @@
+<xml>
+    <c04 level="file">
+        <did>
+            <unittitle id="mss85579_042_076_2" encodinganalog="245$a">Washington
+                Advisory Group,
+                <date>1997-2002</date>
+                <ref target="sub_WAG">
+                    <emph render="italic">See also Container 62</emph>
+                </ref>
+            </unittitle>
+            <unitdate encodinganalog="245$f">1997-2002</unitdate>
+            <unitid label="Digital ID">mss85579_042_076</unitid>
+        </did>
+    </c04>
+    <c03 level="file">
+        <did>
+            <unittitle encodinganalog="245$a">Contacts list,
+                <date>1991-1997</date>
+            </unittitle>
+            <unitdate encodinganalog="245$f">1991-1997</unitdate>
+            <unitid label="Digital ID">mss85579_042_064</unitid>
+            <unitid label="Digital ID">mss85579_042_106</unitid>
+            <unitid label="Digital ID">mss85579_042_131</unitid>
+        </did>
+    </c03>
+</xml>
