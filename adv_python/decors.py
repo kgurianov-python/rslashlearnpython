@@ -17,5 +17,5 @@ def do_func(n):
     return [i for i in range(n)]
 
 
-res = do_func(1000000)
-
+if __name__ == '__main__':
+    res = do_func(1000000)

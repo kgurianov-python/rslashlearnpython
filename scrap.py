@@ -1,28 +1,27 @@
-import cmath
+def valid_parentheses(test: str) -> (bool, int):
+    test_stack = []
+    pdict = {'(': ")", "[": "]", "{": "}", '<': '>'}
+    counter = 0
+    for candidate in test:
+        counter += 1
+        if candidate in pdict:
+            test_stack.append(pdict[candidate])
+        elif candidate in pdict.values() and (len(test_stack) == 0 or test_stack.pop() != candidate):
+            return False, counter
+
+    return len(test_stack) == 0, counter
 
 
-def quadratic_formula(a, b, c):
-    x1 = (-b + cmath.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
+print(f'{valid_parentheses("a (valid) string")=}')
+print(f'{valid_parentheses("an (invalid) string(")=}')
+print(f'{valid_parentheses("[a (valid) string]")=}')
+print(f'{valid_parentheses("an ([invalid) string]")=}')
+print(f'{valid_parentheses("]an invalid string")=}')
+print(f'{valid_parentheses("[an (invalid]) string")=}')
+print(f'{valid_parentheses("[a (valid)] string")=}')
+print(f'{valid_parentheses("[((}{an  invalid)}]) string")=}')
+print(f'{valid_parentheses("<valid/>")=}')
+print(f'{valid_parentheses("(((invalid))")=}')
+print(f'{valid_parentheses("((invalid)))")=}')
+print(f'{valid_parentheses("([())invalid))])")=}')
 
-    x2 = (-b - cmath.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
-    # TODO: Compute the quadratic formula results in variables x1 and x2
-    return x1, x2
-
-
-def print_number(number, prefix_str):
-    if float(int(number)) == number:
-        print(f'{prefix_str}{number:.0f}')
-    else:
-        print(f'{prefix_str}{number:.2f}')
-
-
-if __name__ == "__main__":
-    input_line = input()
-    split_line = input_line.split(" ")
-    a = float(split_line[0])
-    b = float(split_line[1])
-    c = float(split_line[2])
-    solution = quadratic_formula(a, b, c)
-    print(f'Solutions to {a:.0f}x^2 + {b:.0f}x + {c:.0f} = 0')
-    print_number(solution[0], 'x1 = ')
-    print_number(solution[1], 'x2 = ')

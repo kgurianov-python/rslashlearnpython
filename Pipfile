@@ -18,6 +18,8 @@ moto = "*"
 selenium = "*"
 pynput = "*"
 pylint = "*"
+pyautogui = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
