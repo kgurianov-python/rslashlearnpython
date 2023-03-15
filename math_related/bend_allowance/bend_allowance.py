@@ -54,5 +54,5 @@ def calc_bend_allowance(angle: float, radius: float, thickness: float, kfactor: 
 
 
 if __name__ == '__main__':
-    values = get_user_input()
-    print(f"Resulted bend allowance is {calc_bend_allowance(*values):.4} mm")
+    arguments = get_user_input()
+    print(f"Resulted bend allowance is {calc_bend_allowance(*arguments):.4} mm")
