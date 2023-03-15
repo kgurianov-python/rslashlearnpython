@@ -13,10 +13,10 @@ class Limits(NamedTuple):
     high: float
 
     def __str__(self):
-        return f"{self.low} ... {self.high} "
+        return f"{self.low} ... {self.high}"
 
 
-def get_user_float_value(msg: str, limits: Limits) -> float:
+def get_user_float_value(msg: str, limits: Limits = None) -> float:
     """
     Get user input and validate it against lower and higher boundaries
     :param msg: Text message to display
@@ -26,13 +26,10 @@ def get_user_float_value(msg: str, limits: Limits) -> float:
     :rtype float
     :return User provided value
     """
-    while True:
+    result = float(input(f"{msg}: "))
+    while limits is not None and not (limits.low < result < limits.high):
+        print(f"Provided value {result} is outside of limits {limits}, exclusive \nTry again.")
         result = float(input(f"{msg}: "))
-        if limits is not None and not (limits.low < result < limits.high):
-            print(f"Provided value {result} is outside of limits {limits} \nTry again.")
-            continue
-        else:
-            break
 
     return result
 
@@ -42,8 +39,8 @@ def get_user_input() -> tuple[float, float, float, float]:
     Get user inputs
     """
     angle = get_user_float_value("Please provide angle, in degrees", Limits(0, 180))
-    radius = get_user_float_value("Please provide bend radius, in mm", None)
-    thickness = get_user_float_value("Please provide material thickness, in mm", None)
+    radius = get_user_float_value("Please provide bend radius, in mm")
+    thickness = get_user_float_value("Please provide material thickness, in mm")
     kfactor = get_user_float_value("Please provide material kfactor, value between 0 and 1", Limits(0, 1))
 
     return angle, radius, thickness, kfactor
