@@ -8,7 +8,7 @@ from typing import NamedTuple
 
 
 class Limits(NamedTuple):
-    """ Provide means to limits for user input"""
+    """ Provide limits for user input"""
     low: float
     high: float
 
