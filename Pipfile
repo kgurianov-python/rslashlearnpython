@@ -20,6 +20,7 @@ pynput = "*"
 pylint = "*"
 pyautogui = "*"
 sqlalchemy = "*"
+requests-html = "*"
 
 [dev-packages]
 

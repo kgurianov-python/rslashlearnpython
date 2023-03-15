@@ -1,7 +1,7 @@
 import email
 import imaplib
 
-FROM_EMAIL = "@gmail.com"
+FROM_EMAIL = "BlackOroogo@gmail.com"
 
 SMTP_SERVER = "imap.gmail.com"
 SMTP_PORT = 993

@@ -9,6 +9,8 @@ def timeitt(f):
         print(f"{f.__name__} executions time: {delta:.8f}")
         return result
 
+    time.sleep(3)
+
     return whatever_we_want_to_return
 
 

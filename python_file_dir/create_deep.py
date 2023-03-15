@@ -31,7 +31,7 @@ def timeitt(runs: int = 10, cleanup: Callable = None):
 
 @timeitt(1, clean)
 def create_folder_tree(parent_dir, *childdirlists):
-    """Takes parent folder string and optional lists of foldernames.
+    """Takes parent folder string and optional lists of folder names.
     Adds folders to each previous layer of folders."""
 
     # Create the parent dir if it does not exist.
@@ -46,7 +46,7 @@ def create_folder_tree(parent_dir, *childdirlists):
 
 
 def create_folder_tree_starter(parent_dir, *childdirlists):
-    """Takes parent folder string and optional lists of foldernames.
+    """Takes parent folder string and optional lists of folder names.
     Adds folders to each previous layer of folders."""
 
     # Create the parent dir if it does not exist.
