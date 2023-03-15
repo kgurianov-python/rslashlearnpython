@@ -18,10 +18,10 @@ class Limits(NamedTuple):
 
 def get_user_float_value(msg: str, limits: Limits) -> float:
     """
-    Get user impuit and validtes it agaist the limit of lower and higher values
-    :param msg: Tesxt message to display
+    Get user input and validate it against lower and higher boundaries
+    :param msg: Text message to display
     :type msg: str
-    :param limits: Defined lowe r anf higher bounds acceptable for the inout value
+    :param limits: Defines lower and higher bounds acceptable for the inout value
     :type limits: Limits
     :rtype float
     :return User provided value
@@ -56,11 +56,6 @@ def calc_bend_allowance(angle: float, radius: float, thickness: float, kfactor: 
     return (angle * (math.pi / 180)) * (radius + (kfactor * thickness))
 
 
-def main():
-    """ A main function"""
+if __name__ == '__main__':
     values = get_user_input()
     print(f"Resulted bend allowance is {calc_bend_allowance(*values):.4} mm")
-
-
-if __name__ == '__main__':
-    main()
