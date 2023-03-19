@@ -14,8 +14,19 @@ def fibonacci(idx: int) -> int:
 
 
 if __name__ == '__main__':
-    usage = " -n <number> - Fibonacci number"
-    parser = argparse.ArgumentParser('Test', usage, 'Accepts argument when called from CLI')
-    parser.add_argument('-n', '--number', required=True)
+    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser()
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--all-trams', '-at', action='store_true')
+    group.add_argument('--stops', '-s', action='store_true')
+    group.add_argument('--disruptions', '-dis', action='store_true')
+    group.add_argument('--directions', '-dir', action='store_true')
+
+    another_group = parser.add_mutually_exclusive_group()
+    another_group.add_argument('--route', '-r', type=int)
+    another_group.add_argument('--all-trams', '-at', action='store_true')
+
     args = parser.parse_args()
+    print(parser.parse_args())
     print(fibonacci(int(args.number)))
