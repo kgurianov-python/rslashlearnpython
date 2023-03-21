@@ -29,9 +29,9 @@ L = [67, 153, 311, 96, 370, 405, 371, 955, 407]
 
 def split_digits(value: int) -> [int]:
     """Split the value into individual digits.
-    - divmod() the value by 10 to receive the inegrer dicition result and the remainder
+    - divmod() the value by 10 to receive the integer division result and the remainder
     - the remainder of the divmod() call will be the digit.
-    - repeat until lat decimal (the divition result is zero)
+    - repeat until last decimal (the division result is zero)
     """
     result = []
     while value > 0:
@@ -42,13 +42,11 @@ def split_digits(value: int) -> [int]:
 
 def is_armstrong(value: int) -> int:
     """Check if the number is an armstrong number
-    - receive an array of digits from plit_digits() function,
-    - use map() function to apply lambda to create a list of cubes from the list of digits
-    - use sim() function to calculate the sum of cubes
-    - compare the sum of cubes with the original value
+    - return the result of comparison of the original value with the um of its' digits cubes
     """
     return value == sum(map(lambda x: x ** 3, split_digits(value)))
 
 
 if __name__ == '__main__':
     print(list(filter(is_armstrong, L)))
+
