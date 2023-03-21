@@ -49,4 +49,4 @@ def is_armstrong(value: int) -> int:
 
 if __name__ == '__main__':
     print(list(filter(is_armstrong, L)))
-
+    print('Seperated \ntext')
