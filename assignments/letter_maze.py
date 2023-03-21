@@ -25,8 +25,7 @@ DCBBBCD
 DCCCCCD
 DDDDDDD
 """
-
-import string
+from string import ascii_uppercase as str_u
 from typing import Collection
 
 
@@ -34,8 +33,8 @@ def get_printable_maze(maze: list[list[str]]) -> str:
     return '\n'.join([''.join(row) for row in maze])
 
 
-def build_maze(depth: int, filler: Collection[str] = string.ascii_uppercase) -> list[list[str]]:
-    """Fill the top and bottom triangles", rotate the matrix ad to it again"""
+def build_maze(depth: int, filler: Collection[str] = str_u) -> list[list[str]]:
+    """Fill the top and bottom triangles", rotate the matrix and to it again"""
 
     def fill_top_and_bottom():
         """Fill the top and bottom triangles"""
@@ -55,7 +54,9 @@ def build_maze(depth: int, filler: Collection[str] = string.ascii_uppercase) -> 
 
 
 if __name__ == '__main__':
-    maze_size = 6
-    print(*build_maze(maze_size), sep='\n')
-    print(f"\nFilled with English ABC:\n{get_printable_maze(build_maze(maze_size))}")
-    print(f"\nFilled with custom chars:\n{get_printable_maze(build_maze(maze_size, filler='*#$@*@#$'))}")
+    maze_size = 4
+
+    # a less overengineered solution
+    for i in range(maze_size * 2 - 1):
+        current = abs(maze_size - i - 1)
+        print(str_u[maze_size - 1:current:-1] + (current * 2 + 1) * str_u[current] + str_u[current + 1:maze_size])
