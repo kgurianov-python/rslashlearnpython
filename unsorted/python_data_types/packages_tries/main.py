@@ -1,4 +1,4 @@
-from utils import some_utils
+from utils_local import some_utils
 
 
 def main():

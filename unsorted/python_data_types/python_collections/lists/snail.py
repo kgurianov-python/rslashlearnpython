@@ -23,21 +23,7 @@ array = [[template[(i + 3 * k) % len(template)] for i in range(ARR_SIZE)] for k 
 
 # array = [[752, 899], [535, 963]]
 
-def timeitt(runs: int = 100):
-    def decorator(f):
-        def wrapper(*args, **kwargs):
-            stats = []
-            for _ in range(runs):
-                data = copy.deepcopy(args[0])
-                start = time.perf_counter()
-                result = f(data, *args[1:], **kwargs)
-                end = time.perf_counter()
-                logger.debug(result)
-                stats.append(end - start)
-            logger.info(f"{f.__name__} | {runs} runs | AVG run time: {sum(stats) / runs:.8f}")
-            return result
-        return wrapper
-    return decorator
+
 
 
 def transpose_left(arr: list[list[int]] = None) -> list[list[int]]:
