@@ -11,7 +11,7 @@ for i in range(4):
     time.sleep(0.5)
 """]
 
-file = open('out','ab')
+file = open('out', 'ab')
 proc = subprocess.Popen(cmd,stdout=file)
 
 # proc = subprocess.Popen(cmd,stdout=subprocess.PIPE)

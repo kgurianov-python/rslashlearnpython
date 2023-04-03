@@ -24,10 +24,11 @@ def get_first_days(st_dt: str, end_dt: str) -> [str]:
     Generate a list of 1 days of mant in the range btween start_date and end_date
     """
     st_dt = datetime.strptime(st_dt, '%Y-%m-%d')
+    if st_dt.day > 1:
+        st_dt = st_dt + relativedelta(months=1)
     end_dt = datetime.strptime(end_dt, '%Y-%m-%d')
-    result = map(lambda x: x.strftime('%Y-%m-%d'),
-                 [dt for dt in rrule(MONTHLY, dtstart=(st_dt + relativedelta(day=1)), until=end_dt)])
-    return list(result)
+    result = [(dt + relativedelta(day=1)).strftime('%Y-%m-%d') for dt in rrule(MONTHLY, dtstart=st_dt, until=end_dt)]
+    return result
 
 
 def get_last_days(st_dt: str, end_dt: str) -> [str]:
@@ -36,13 +37,14 @@ def get_last_days(st_dt: str, end_dt: str) -> [str]:
     """
     st_dt = datetime.strptime(st_dt, '%Y-%m-%d')
     end_dt = datetime.strptime(end_dt, '%Y-%m-%d')
-    result = map(lambda x: (x + relativedelta(day=31)).strftime('%Y-%m-%d'),
-                 [dt for dt in rrule(MONTHLY, dtstart=st_dt, until=end_dt)])
-    return list(result)
+    if end_dt < end_dt + relativedelta(day=31):
+        end_dt = end_dt + relativedelta(months=-1)
+    result = [(dt + relativedelta(day=31)).strftime('%Y-%m-%d') for dt in rrule(MONTHLY, dtstart=st_dt, until=end_dt)]
+    return result
 
 
 if __name__ == '__main__':
-    start_date = '2022-06-01'
-    end_date = '2023-05-31'
+    start_date = '2022-06-02'
+    end_date = '2023-05-30'
     print(f"{get_first_days(start_date, end_date) = }")
     print(f"{get_last_days(start_date, end_date) = }")

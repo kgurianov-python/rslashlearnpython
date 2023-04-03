@@ -1,5 +1,5 @@
 import random
-from python_data_types.python_collections import groupby
+from unsorted.python_data_types.python_collections import groupby
 
 NUMBER_OF_EXPERIMENTS = 10000
 DICE_SIDES = 10

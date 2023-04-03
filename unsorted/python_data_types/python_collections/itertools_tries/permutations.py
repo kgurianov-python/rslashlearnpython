@@ -1,4 +1,4 @@
-from python_data_types.python_collections import itertools_tries
+from unsorted.python_data_types.python_collections import itertools_tries
 
 
 def main():
@@ -8,7 +8,7 @@ def main():
     for comb in comb_list:
         print(comb)
 
-    perm_list = itertools_tries.permutations(range(4), r=2)
+    perm_list = unsorted.python_data_types.python_collections.itertools_tries.permutations(range(4), r=2)
     print("Permutations:")
     for perm in perm_list:
         print(perm)

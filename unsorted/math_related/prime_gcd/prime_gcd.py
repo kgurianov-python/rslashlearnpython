@@ -6,8 +6,8 @@ ur instructor told us to get prime factors from two inputs X and Y. Then he told
 
 GCD(x_factor,y_factor)". Any help in solving this?
 """
-from collections import defaultdict, Counter
-from adv_python.decors import timeitt
+from collections import Counter
+from unsorted.adv_python.decors import timeitt
 
 
 def get_prime_factors(value: int) -> list[int]:
