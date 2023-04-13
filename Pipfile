@@ -21,6 +21,10 @@ pylint = "*"
 pyautogui = "*"
 sqlalchemy = "*"
 requests-html = "*"
+xlsxwriter = "*"
+openpyxl = "*"
+pysimplegui = "*"
+aiohttp = "*"
 
 [dev-packages]
 
