@@ -44,11 +44,19 @@ def generate_password(strength: Strength, required: Collection[Hashable] = None)
     return "".join(password_array)
 
 
+def get_user_input():
+    while True:
+        try:
+            options = ", ".join(([f"{idx + 1}: {value.name}" for idx, value in enumerate(Strength)]))
+            strength = int(input(f"Please select the password strength ({options})"))
+            return list(Strength)[strength - 1]
+        except (ValueError, IndexError):
+            print("Invalid input, please choose valid value")
+
+
 if __name__ == '__main__':
-    print(f"{generate_password(Strength.WEAK) = }")
-    print(f"{generate_password(Strength.STRONG) = }")
-    print(f"{generate_password(Strength.VERY_STRONG) = }")
+    strength = get_user_input()
+    print(f"{generate_password(strength) = }")
+
     required_chars = ['ABC-XYZ', '1', '&']
-    print(f"{generate_password(Strength.WEAK, required_chars.copy()) = }")
-    print(f"{generate_password(Strength.STRONG, required_chars.copy()) = }")
-    print(f"{generate_password(Strength.VERY_STRONG, required_chars.copy()) = }")
+    print(f"{generate_password(strength, required_chars.copy()) = }")

@@ -1,4 +1,3 @@
-import string
 import unittest
 
 from random_password.pass_generator import generate_password, Strength, DEFAULT_REQUIREMENTS
