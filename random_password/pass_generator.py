@@ -27,7 +27,8 @@ class Strength(Enum):
     VERY_STRONG = 12
 
 
-def generate_password(strength: Strength, required: Collection[Hashable] = None) -> str:
+def generate_password(required: Collection[Hashable] = None) -> str:
+    strength = get_user_input()
     limits = {}
     if not required:
         required = DEFAULT_REQUIREMENTS.copy()
@@ -55,8 +56,8 @@ def get_user_input():
 
 
 if __name__ == '__main__':
-    strength = get_user_input()
-    print(f"{generate_password(strength) = }")
+
+    print(f"{generate_password() = }")
 
     required_chars = ['ABC-XYZ', '1', '&']
-    print(f"{generate_password(strength, required_chars.copy()) = }")
+    print(f"{generate_password(required_chars.copy()) = }")

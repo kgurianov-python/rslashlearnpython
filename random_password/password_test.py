@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import patch
 
-from random_password.pass_generator import generate_password, Strength, DEFAULT_REQUIREMENTS
+from random_password.pass_generator import generate_password, DEFAULT_REQUIREMENTS
 
 
 class MyTestCase(unittest.TestCase):
@@ -9,29 +10,29 @@ class MyTestCase(unittest.TestCase):
         for template in required:
             self.assertTrue(any(map(lambda x: x in template, expected)))
 
-    def test_weak(self):
-        strength = Strength.WEAK
-        expected = generate_password(strength)
-        self.assertEqual(strength.value, len(expected))
+    @patch('builtins.input', return_value="1")
+    def test_weak(self, mocked_input):
+        expected = generate_password()
+        self.assertEqual(5, len(expected))
         self.do_test_validity(expected)
 
-    def test_strong(self):
-        strength = Strength.STRONG
-        expected = generate_password(strength)
-        self.assertEqual(strength.value, len(expected))
+    @patch('builtins.input', return_value="2")
+    def test_strong(self, strength):
+        expected = generate_password()
+        self.assertEqual(8, len(expected))
         self.do_test_validity(expected)
 
-    def test_very_strong(self):
-        strength = Strength.VERY_STRONG
-        expected = generate_password(strength)
-        self.assertEqual(strength.value, len(expected))
+    @patch('builtins.input', return_value="3")
+    def test_very_strong(self, strength):
+        expected = generate_password()
+        self.assertEqual(12, len(expected))
         self.do_test_validity(expected)
 
-    def test_custom_req_weak(self):
-        strength = Strength.WEAK
+    @patch('builtins.input', return_value="3")
+    def test_custom_req_weak(self, strength):
         required = ['ABC', '123', '&%^']
-        expected = generate_password(strength, required)
-        self.assertEqual(strength.value, len(expected))
+        expected = generate_password(required)
+        self.assertEqual(12, len(expected))
         self.do_test_validity(expected, required)
 
 

@@ -29,16 +29,13 @@ print(req.status_code)
 I would like to use the requests library to continue this webscraping project, however I can't seem to get it working. Any insights on how to fix this, or why this is happening would be very much appreciated!
 """
 import logging
-from urllib.request import Request, urlopen
 import requests
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
 
 log_format = '%(asctime)s [%(name)s]  [%(levelname)s] : %(message)s'
 logging.basicConfig(level=logging.DEBUG, format=log_format)
 logger = logging.getLogger('logger')
 
-
-# HEADERS = {'Accept-Language': 'en-US', 'User-Agent': 'i-do-not-know'}
 headers = {
     "User-agent": "i-do-not-care"
 }
@@ -51,4 +48,8 @@ soup = BeautifulSoup(req.content, "html.parser", from_encoding="utf_8")
 content_container = soup.find('div', {"id": "centerContent"})
 albums = content_container.find_all('div', {"class": "albumBlock"})
 for album in albums[:5]:
-    logger.info(album.find("div", {"class": "artistTitle"}).text)
+    title = album.find("div", {"class": "artistTitle"}).text
+    ratings_tags = album.find("div", {"class": "ratingRowContainer"}).find_all('div', {"class": "ratingRow"})
+    ratings = {rating.find('div', {"class": "ratingText"}).text: rating.find('div', {"class": "ratingBlock"}).text for
+               rating in ratings_tags}
+    logger.info(f"{title}, {ratings}")
