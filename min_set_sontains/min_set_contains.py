@@ -52,7 +52,7 @@ def get_min_dec(*args, expected: Collection = None) -> dict[str:Collection]:
     if not args or (len(expected) <= 0):
         return {'decks': (), 'remainder': expected}
 
-    curr_val = {'decks': args, 'remainder': expected }
+    curr_val = {'decks': args, 'remainder': expected}
 
     for idx, arg in enumerate(args):
         res = get_min_dec(*(args[:idx] + args[idx + 1:]), expected=set(expected) - set(arg))
