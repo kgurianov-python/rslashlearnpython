@@ -56,7 +56,7 @@ def get_min_dec(*args, expected: Collection = None) -> dict[str:Collection]:
     return curr_val
 
 
-def test_result(*args, build_deck=None):
+def do_run(*args, build_deck=None):
     res = get_min_dec(*args, expected=build_deck)
     print(f"\nBest decks to form {build_deck if build_deck is not None else 'all'} cards for target deck.")
     print(f"Calculated result: {res = }")
@@ -71,12 +71,12 @@ if __name__ == '__main__':
     deck_c = ['cat', 'coyote', 'bear']
     deck_d = ['coyote', 'mouse', 'gorilla', 'zebra']
 
-    test_result(deck_a, deck_b, deck_c, deck_d, build_deck=['koala', 'piggy'])
+    do_run(deck_a, deck_b, deck_c, deck_d, build_deck=['koala', 'piggy'])
 
-    test_result(deck_a, deck_b, deck_c, deck_d, build_deck=['cat', 'dog', 'mouse', 'gorilla', 'koala', 'piggy'])
+    do_run(deck_a, deck_b, deck_c, deck_d, build_deck=['cat', 'dog', 'mouse', 'coyote', 'koala', 'piggy'])
 
-    test_result(deck_a, deck_b, deck_c, deck_d, build_deck=['cat', 'dog', 'mouse', 'gorilla'])
+    do_run(deck_a, deck_b, deck_c, deck_d, build_deck=['cat', 'dog', 'mouse', 'gorilla'])
 
-    test_result(deck_a, deck_b, deck_c, deck_d, build_deck=['cat', 'coyote', 'gorilla'])
+    do_run(deck_a, deck_b, deck_c, deck_d, build_deck=['cat', 'coyote', 'gorilla'])
 
-    test_result(deck_a, deck_b, deck_c, deck_d)
+    do_run(deck_a, deck_b, deck_c, deck_d)
