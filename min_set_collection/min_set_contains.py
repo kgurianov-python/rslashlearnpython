@@ -28,14 +28,7 @@ the most decks operational).
 
 Can someone help me with the logic/psuedo code/basic python of how to achieve this in python? I sat staring at my
 screen for an hour and my brain hurts trying to figure out how to compute this in python.
-
-1 Comment
-
-Award
-
-Share
 """
-import math
 from typing import Collection
 
 
