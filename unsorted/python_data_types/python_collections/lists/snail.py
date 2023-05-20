@@ -4,10 +4,12 @@ from itertools import islice
 from typing import Callable
 import time
 
-log_format = '%(name)s : %(levelname)s : %(asctime)s - %(message)s'
-logging.basicConfig(level=logging.ERROR, format=log_format)
+from utils_local.timeitt import timeitt
+
+log_format = '%(name)-10s : %(levelname)-8s : %(asctime)s : %(message)s'
+logging.basicConfig(level=logging.DEBUG, format=log_format)
 logger = logging.getLogger('logger')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 ARR_SIZE = 10
 
 array = [[1, 2, 3, 4, 5, 6],
@@ -17,13 +19,17 @@ array = [[1, 2, 3, 4, 5, 6],
          [1, 1, 1, 4, 5, 5],
          [1, 2, 3, 4, 5, 5]]
 
-template = list(range(10))
-array = [[template[(i + 3 * k) % len(template)] for i in range(ARR_SIZE)] for k in range(ARR_SIZE)]
+array = [[1, 2, 3],
+         [4, 5, 6],
+         [7, 8, 9]]
+
+fill = len(str(ARR_SIZE**2))
+array = list(
+    map(list, zip(*[iter(map(lambda x: f"{x:0{fill}}", range(1, ARR_SIZE * ARR_SIZE+1)))] * ARR_SIZE)))
+print(*array, sep="\n")
 
 
 # array = [[752, 899], [535, 963]]
-
-
 
 
 def transpose_left(arr: list[list[int]] = None) -> list[list[int]]:
@@ -53,7 +59,7 @@ def transpose_left_shift_zip(arr: list[list[int]] = None, shift: int = 0) -> lis
 
 @timeitt()
 def snail_pop(arr: list[list[int]]) -> [int]:
-    # result = arr.pop(0)
+    arr = arr[:]
     result = []
     while arr:
         result.extend(arr.pop(0))
@@ -64,6 +70,7 @@ def snail_pop(arr: list[list[int]]) -> [int]:
 
 @timeitt()
 def snail_pop_zip(arr: list[list[int]]) -> [int]:
+    arr = arr[:]
     result = []
     while arr:
         result.extend(arr.pop(0))
@@ -93,3 +100,5 @@ if __name__ == '__main__':
     tests = [snail_pop, snail_pop_zip, snail_shift, snail_shift_zip]
     for test in tests:
         logger.info(test(array))
+
+    # print(snail_pop(array))

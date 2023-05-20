@@ -55,7 +55,7 @@ def get_person_blob_info(person_article: Tag) -> []:
 def get_person_info(key: str, url: str) -> {}:
     result = {}
     resp = requests.get(url, headers=HEADER)
-    logger.debug(f"Processing {key}: {url}")
+    logger.debug(f"{'Processing':<20}: {key:<30}: {url}")
     person_article = BeautifulSoup(resp.content, 'html.parser', parse_only=SoupStrainer('article'))
 
     person_detail = person_article.find("div", {"class": "people__details"})
@@ -65,7 +65,7 @@ def get_person_info(key: str, url: str) -> {}:
 
     result.update({"contacts": get_person_table_info(person_detail)})
     result.update({"research": get_person_blob_info(person_article)})
-    logger.debug(f"Done processing {key}: {url}")
+    logger.debug(f"{'Done processing':<20}: {key:<30}: {url}")
     return result
 
 
@@ -76,10 +76,10 @@ def get_faculty_people_links(faculty: Tag) -> []:
 
 def get_faculty_people_from_links(args) -> {}:
     key, val = args
-    logger.debug(f"================== Processing: {key} ==================")
+    logger.debug(f" Processing: {key} ".center(120, '='))
     with ThreadPoolExecutor(max_workers=20) as executor:
         results = executor.map(partial(get_person_info, key), val)
-    logger.debug(f"================== Done processing: {key} ==================")
+    logger.debug(f" Done processing: {key} ".center(120, '='))
     return {key: list(results)}
 
 

@@ -1,7 +1,11 @@
 """
 Time counter decorator
 """
+import logging
 import time
+# log_format = '%(name)s : %(levelname)s : %(asctime)s - %(message)s'
+# # logging.basicConfig(level=logging.DEBUG, format=log_format)
+logger = logging.getLogger('timeit')
 
 
 def timeitt(runs: int = 100):
@@ -13,7 +17,7 @@ def timeitt(runs: int = 100):
                 result = f(*args, **kwargs)
                 end = time.perf_counter()
                 stats.append(end - start)
-            print(f"{f.__name__} | {runs} runs | AVG run time: {sum(stats) / runs:.8f}")
+            logger.debug(f"{f.__name__} | {runs} runs | AVG run time: {sum(stats) / runs:.8f}")
             return result
 
         return wrapper

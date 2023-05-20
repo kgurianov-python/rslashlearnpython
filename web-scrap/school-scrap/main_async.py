@@ -5,6 +5,7 @@ import logging
 import time
 
 import requests as requests
+from aiohttp import ClientSession
 from bs4 import BeautifulSoup, Tag, SoupStrainer
 
 log_format = '%(name)s : %(levelname)s : %(asctime)s - %(message)s'
@@ -52,17 +53,11 @@ def get_person_blob_info(person_article: Tag) -> []:
     return result
 
 
-async def get_person_info(key: str, url: str) -> {}:
+async def get_person_info(key: str, url: str, client: ClientSession) -> {}:
     result = {}
-    client = aiohttp.ClientSession()
-    try:
-        async with client.get(url, headers=HEADER) as resp:
-            data = await resp.text()
-    except Exception as e:
-        logger.error(e)
-    finally:
-        await client.close()
-    logger.debug(f"Processing: {key}: {url}")
+    async with client.get(url, headers=HEADER) as resp:
+         data = await resp.text()
+    logger.debug(f"{'Processing':<20}: {key:<30}: {url}")
     # asyncio.sleep(3)
     person_article = BeautifulSoup(data, 'html.parser', parse_only=SoupStrainer('article'))
 
@@ -73,13 +68,8 @@ async def get_person_info(key: str, url: str) -> {}:
 
     result.update({"contacts": get_person_table_info(person_detail)})
     result.update({"research": get_person_blob_info(person_article)})
-    logger.debug(f"Done processing: {key}: {url}")
-
+    logger.debug(f"{'Done processing':<20}: {key:<30}: {url}")
     return result
-
-
-async def get_person_info_async(key: str, url: str) -> {}:
-    return await asyncio.to_thread(get_person_info, key, url)
 
 
 def get_faculty_people_links(faculty: Tag) -> []:
@@ -88,9 +78,10 @@ def get_faculty_people_links(faculty: Tag) -> []:
 
 
 async def get_faculty_people_from_links(key, val) -> {}:
-    logger.debug(f"================== Processing: {key} ==================")
-    people = await asyncio.gather(*[get_person_info(key, href) for href in val], )
-    logger.debug(f"================== Done processing: {key} ==================")
+    logger.debug(f" Processing: {key} ".center(120, '='))
+    async with aiohttp.ClientSession() as client:
+        people = await asyncio.gather(*[get_person_info(key, href, client) for href in val], )
+    logger.debug(f" Done processing: {key} ".center(120, '='))
     return {key: people}
 
 
@@ -99,7 +90,7 @@ def get_faculties_list_with_links(soup: Tag) -> dict[str, Tag]:
     faculties: list[Tag] = soup.find_all("h2")
     for faculty in faculties:
         logger.info(f"{faculty.text}")
-        faculty_data: Tag = faculty.next_element
+        faculty_data = faculty.next_element
         while faculty_data.name != 'section':
             faculty_data = faculty_data.next_element
         result.update({faculty.text: get_faculty_people_links(faculty_data)})
