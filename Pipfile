@@ -15,7 +15,7 @@ jupyter = "*"
 pandas = "*"
 boto3 = "*"
 moto = "*"
-selenium = "*"
+selenium = "==4.12.0"
 pynput = "*"
 pylint = "*"
 pyautogui = "*"
@@ -25,6 +25,8 @@ xlsxwriter = "*"
 openpyxl = "*"
 pysimplegui = "*"
 aiohttp = "*"
+notebook = "*"
+webdriver-manager = "*"
 
 [dev-packages]
 
