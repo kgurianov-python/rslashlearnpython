@@ -4,32 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-python-telegram-bot = {extras = ["all"], version = "*"}
-pytest = "*"
-numpy = "*"
-matplotlib = "*"
-requests = "*"
-beautifulsoup4 = "*"
-yattag = "*"
-jupyter = "*"
-pandas = "*"
-boto3 = "*"
-moto = "*"
-selenium = "==4.12.0"
-pynput = "*"
-pylint = "*"
-pyautogui = "*"
-sqlalchemy = "*"
-requests-html = "*"
-xlsxwriter = "*"
-openpyxl = "*"
-pysimplegui = "*"
-aiohttp = "*"
-notebook = "*"
+selenium = "*"
 webdriver-manager = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-python_full_version = "3.11.1"
+python_full_version = "3.11.4"
